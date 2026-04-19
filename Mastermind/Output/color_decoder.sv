@@ -34,7 +34,7 @@ module color_decoder(
                 default: begin vgaRed=4'b0000; vgaGreen=4'b0000; vgaBlue=4'b0000; end // Black
             endcase
         end else begin
-            begin vgaRed=4'b0000; vgaGreen=4'b0000; vgaBlue=4'b0000; end // Black
+            begin vgaRed=4'b0000; vgaGreen=4'b0000; vgaBlue=4'b0000; end // Default color: Black
         end
     end
 

@@ -1,7 +1,14 @@
+
+
+/*
+Button debouncer module which stabilizes and debounces button inputs.
+Features a buffer, debouncer and pulsifier.
+*/
+
+
 module button_debouncer_vect(
     input logic clk, rst,
 
-    //input logic handshake_input,
     input logic [4:0] async_buttons_in,
     output logic [4:0] command_out);
 
@@ -12,7 +19,6 @@ module button_debouncer_vect(
     // 00100 - Confirm button
     // 01000 - Color selection one to right
     // 10000 - Go down one row
-
 
 
     // Buffer declaration
@@ -29,7 +35,6 @@ module button_debouncer_vect(
             buff2 <= buff1;
         end
     end
-
 
 
     // Debounce declaration
@@ -59,11 +64,10 @@ module button_debouncer_vect(
     end
 
 
-
     // Pulsifier declaration
     logic [4:0] command_prev;//, command_pulse;
 
-    // Pulsifier
+    // Pulsifier preview
     always_ff @(posedge clk) begin
         if (rst) begin
             command_prev <= 5'b00000;
@@ -73,38 +77,6 @@ module button_debouncer_vect(
         end
     end
 
+    // Creating the pulse
     assign command_out = sync_buttons & ~command_prev;
-
-
-    /*
-    // Input register
-    always_ff @( posedge clk ) begin
-        if (rst) begin
-            command_out <= 5'b00000;
-        end
-        else if (handshake_input) begin
-            command_out <= 5'b00000;    // Handshake -> Deletes used command
-        end
-        else if (command_out == 5'b00000) begin
-            if (command_pulse[0]) begin
-                command_out <= 5'b00001;
-            end
-            if (command_pulse[1]) begin
-                command_out <= 5'b00010;
-            end
-            if (command_pulse[2]) begin
-                command_out <= 5'b00100;
-            end
-            if (command_pulse[3]) begin
-                command_out <= 5'b01000;
-            end
-            if (command_pulse[4]) begin
-                command_out <= 5'b10000;
-            end
-        end
-        else begin 
-            command_out <= command_out; // Hold previous value
-        end
-    end
-    */
 endmodule

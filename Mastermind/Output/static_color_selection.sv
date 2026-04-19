@@ -1,10 +1,19 @@
+
+
+/*
+Static color selection module showing the different color options that can be used.
+Uses the counter framework provided by the sync_generator module to combinationally write the color signal.
+*/
+
+
 module static_color_selection(
     input logic [10:0] h_count,
     input logic [9:0] v_count,
 
     output logic [3:0] selection_color);
 
-    always_comb begin // Color selection display
+    // Color selection display
+    always_comb begin
         if (((h_count >= 60) && (h_count <= 140)) && 
             ((v_count >= 120) && (v_count <= 200))) begin
             selection_color = 4'b1100; // Cross TODO: Change to a cross
@@ -46,7 +55,7 @@ module static_color_selection(
             selection_color = 4'b1100; // TODO: Change to confirmation sign
         end 
         else begin
-            selection_color = 4'b0000;
+            selection_color = 4'b0000; // Default color: Black
         end
     end
 endmodule

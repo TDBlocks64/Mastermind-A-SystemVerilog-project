@@ -1,3 +1,11 @@
+
+
+/*
+Color selector module which visualizes which of the colors is currently selected.
+Uses the counter framework provided by the sync_generator module to combinationally write the color signal.
+*/
+
+
 module color_selector(
     input logic [10:0] h_count,
     input logic [9:0] v_count,
@@ -6,6 +14,7 @@ module color_selector(
 
     output logic select_color);
 
+    // Selected color visualization
     always_comb begin
         select_color = 1'b0;
         case (current_color)
@@ -109,7 +118,7 @@ module color_selector(
                         select_color = 1'b1;
                     end
             end
-            default: begin select_color = 1'b0; end
+            default: begin select_color = 1'b0; end // Default color: Black
         endcase
     end
 

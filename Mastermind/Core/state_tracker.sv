@@ -1,9 +1,14 @@
+
+
+/*
+State tracker module that keeps track of various variables of the game.
+*/
+
+
 module state_tracker(
     input logic clk, rst,
 
     input logic [4:0] command,
-
-    //output logic handshake_input,
 
     output logic [3:0] write_x,
     output logic [1:0] write_y,

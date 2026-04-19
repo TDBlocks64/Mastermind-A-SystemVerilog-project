@@ -1,3 +1,10 @@
+
+
+/*
+Output root module containing and connecting all the modules that handle output signals.
+*/
+
+
 module output_root(
     input logic clk, rst,
     
@@ -13,15 +20,17 @@ module output_root(
     output logic h_sync, v_sync,
     output logic [3:0] vgaRed, vgaGreen, vgaBlue);
 
+    // Internal signal declaration
     logic [10:0] h_count;
     logic [9:0] v_count;
 
-    logic visible;//, handshake_output;
+    logic visible;
 
     logic select_color, grid_color;
     logic [3:0] selection_color;
     logic [3:0] color;
 
+    // Structurally connecting the modules
     sync_gen_720p sync_gen_mod(
         .clk(clk),.rst(rst),
         .h_count(h_count),.v_count(v_count),
