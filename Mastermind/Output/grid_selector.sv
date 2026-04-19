@@ -1,3 +1,11 @@
+
+
+/*
+Grid selector module which visualizes which of the rows is currently selected.
+Uses the counter framework provided by the sync_generator module to combinationally write the color signal.
+*/
+
+
 module grid_selector(
     input logic [10:0] h_count,
     input logic [9:0] v_count,
@@ -7,6 +15,7 @@ module grid_selector(
 
     output logic grid_color);
 
+    // Selected row visualization
     always_comb begin
         grid_color = 1'b0;
         case (current_row)
@@ -50,7 +59,7 @@ module grid_selector(
                         grid_color = 1'b1;
                     end
             end
-            default: begin grid_color = 1'b0; end
+            default: begin grid_color = 1'b0; end   // Default color: Black
         endcase
     end
 endmodule

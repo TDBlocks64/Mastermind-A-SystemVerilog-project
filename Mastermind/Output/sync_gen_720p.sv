@@ -22,12 +22,14 @@ module sync_gen_720p(
     logic [10:0] h_count_next;
     logic [9:0] v_count_next;
 
+    // Enumerator declarations
     typedef enum logic [1:0] {H_VISIBLE, H_FRONT, H_SYNC, H_BACK} h_state_t;
     h_state_t h_state, h_state_next;
 
     typedef enum logic [1:0] {V_VISIBLE, V_FRONT, V_SYNC, V_BACK} v_state_t;
     v_state_t v_state, v_state_next;
 
+    // State register
     always_ff @(posedge clk) begin
         if (rst) begin
             h_state <= H_VISIBLE;
@@ -42,6 +44,7 @@ module sync_gen_720p(
         end
     end
 
+    // State encoding
     always_comb begin
         h_state_next = h_state;
         h_count_next = h_count;
@@ -110,6 +113,7 @@ module sync_gen_720p(
         endcase
     end
 
+    // Miscellaneous logic
     always_comb begin
         h_sync = (h_state == H_SYNC) ? 1'b0 : 1'b1;
         v_sync = (v_state == V_SYNC) ? 1'b0 : 1'b1;

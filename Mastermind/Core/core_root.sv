@@ -1,3 +1,10 @@
+
+
+/*
+Core root module containing and connecting all the modules with game logic.
+*/
+
+
 module core_root(
     input logic clk, rst,
 
@@ -7,22 +14,21 @@ module core_root(
     input logic [2:0] read_y,
 
     output logic [3:0] read_data,
-
-    //output logic handshake_input,
     
     output logic [3:0] current_color,
     output logic [3:0] current_column,
     output logic [1:0] current_row);
 
+    // Internal signal declaration
     logic [3:0] write_x;
     logic [1:0] write_y;
     logic [3:0] write_data;
     logic write_enable;
 
+    // Structurally connecting the modules
     state_tracker state_tracker_mod(
         .clk(clk),.rst(rst),
         .command(command),
-        //.handshake_input(handshake_input),
         .write_x(write_x),.write_y(write_y),
         .write_data(write_data),
         .write_enable(write_enable),

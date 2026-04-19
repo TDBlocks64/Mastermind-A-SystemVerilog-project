@@ -1,3 +1,11 @@
+
+
+/*
+RAM module that keeps track of the colors in the grid.
+Features a synchronous write channel and an asynchronous read channel.
+*/
+
+
 module grid_RAM(
     input logic clk, rst,
 
