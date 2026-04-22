@@ -12,6 +12,10 @@ module output_root(
     input logic [3:0] current_column,
     input logic [1:0] current_row,
 
+    input logic show_solution,
+
+    input logic [3:0] rnd_col_1, rnd_col_2, rnd_col_3, rnd_col_4,
+
     input logic [3:0] read_data,
 
     output logic [3:0] read_x,
@@ -27,7 +31,7 @@ module output_root(
     logic visible;
 
     logic select_color, grid_color;
-    logic [3:0] selection_color;
+    logic [3:0] selection_color, solution_color;
     logic [3:0] color;
 
     // Structurally connecting the modules
@@ -57,11 +61,19 @@ module output_root(
         .h_count(h_count),.v_count(v_count),
         .read_x(read_x),.read_y(read_y));
 
+    solution_display solution_display_mod(
+        .h_count(h_count),.v_count(v_count),
+        .show_solution(show_solution),
+        .rnd_col_1(rnd_col_1),.rnd_col_2(rnd_col_2),
+        .rnd_col_3(rnd_col_3),.rnd_col_4(rnd_col_4),
+        .solution_color(solution_color));
+
     color_prioritizer color_prioritizer_mod(
         .rst(rst),
         .select_color(select_color),
         .grid_color(grid_color),
         .selection_color(selection_color),
+        .solution_color(solution_color),
         .read_data(read_data),
         .color(color));
 

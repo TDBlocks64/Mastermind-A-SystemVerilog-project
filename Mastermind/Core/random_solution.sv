@@ -1,3 +1,14 @@
+
+
+/*
+Random solution module that generates a random solution using an LFSR and capturing logic.
+The LFSR generates a deterministic 16 bit sequence that is sampled at a random moment in time.
+The sampling is done the first time the user presses the middle button to place a color.
+Before capturing the random number is split into 4 chunks of 3 bits containing a value between 0 and 7.
+Then by adding a 1 to that 3 bit value the chunks become 4 bit with values between 1 and 8.
+*/
+
+
 module random_solution(
     input logic clk, rst,
     
