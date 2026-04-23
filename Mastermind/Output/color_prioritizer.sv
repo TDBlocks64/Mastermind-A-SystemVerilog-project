@@ -10,7 +10,7 @@ This module prevents multiple signals driving one signal.
 module color_prioritizer(
     input logic rst,
     input logic select_color, grid_color,
-    input logic [3:0] selection_color, read_data,
+    input logic [3:0] selection_color, solution_color, read_data,
 
     output logic [3:0] color);
 
@@ -25,6 +25,7 @@ module color_prioritizer(
     always_comb begin
         if (rst) color = 4'b0000;
         else if (selection_color != 4'b0000) color = selection_color;
+        else if (solution_color != 4'b0000) color = solution_color;
         else if (intern_select_color != 4'b0000) color = intern_select_color;
         else if (intern_grid_color != 4'b0000) color = intern_grid_color;
         else if (read_data != 4'b0000) color = read_data;

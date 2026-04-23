@@ -17,7 +17,9 @@ module core_root(
     
     output logic [3:0] current_color,
     output logic [3:0] current_column,
-    output logic [1:0] current_row);
+    output logic [1:0] current_row,
+    
+    output logic [3:0] rnd_col_1, rnd_col_2, rnd_col_3, rnd_col_4);
 
     // Internal signal declaration
     logic [3:0] write_x;
@@ -43,5 +45,11 @@ module core_root(
         .write_enable(write_enable),
         .read_x(read_x),.read_y(read_y),
         .read_data(read_data));
+
+    random_solution random_sol_mod(
+        .clk(clk),.rst(rst),
+        .command(command),
+        .rnd_col_1(rnd_col_1),.rnd_col_2(rnd_col_2),
+        .rnd_col_3(rnd_col_3),.rnd_col_4(rnd_col_4));
 
 endmodule
