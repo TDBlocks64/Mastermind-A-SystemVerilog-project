@@ -38,7 +38,7 @@ module grid_RAM(
         end
     end
 
-    // Reading
+    // Asynchronous reading
     assign read_data = ((read_x < 10) && (read_y < 4)) ? mem[read_x][read_y] : 4'b0000;    // Asynchronous data read
 
 endmodule
