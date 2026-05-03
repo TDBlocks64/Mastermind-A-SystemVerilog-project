@@ -1,7 +1,7 @@
 
 
 /*
-Grid display module which reads the RAM module in the core.
+Grid display module which reads the grid RAM module in the core.
 By only reading the RAM within specific parts of the screen can the data within the RAM be visualized.
 */
 

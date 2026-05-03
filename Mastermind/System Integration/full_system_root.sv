@@ -17,20 +17,24 @@ module full_system_root(
     output logic h_sync, v_sync,
     output logic [3:0] vgaRed, vgaGreen, vgaBlue);
 
+
+
     // Internal signal declaration
     logic clk, handshake_input;
 
     logic [4:0] command;
 
-    logic [3:0] read_x;
-    logic [2:0] read_y;
-    logic [3:0] read_data;
+    logic [3:0] grid_read_x, comp_read_x;
+    logic [2:0] grid_read_y, comp_read_y;
+    logic [3:0] grid_read_data, comp_read_data;
 
     logic [3:0] current_color;
     logic [3:0] current_column;
     logic [1:0] current_row;
 
     logic [3:0] rnd_col_1, rnd_col_2, rnd_col_3, rnd_col_4;
+
+
 
     // Structurally connecting the modules
     clk_wiz_0 clk_wiz_mod(
@@ -48,8 +52,13 @@ module full_system_root(
         .clk(clk),.rst(rst),
         .command(command),
 
-        .read_x(read_x),.read_y(read_y),
-        .read_data(read_data),
+        .grid_read_x(grid_read_x),
+        .comp_read_x(comp_read_x),
+        .grid_read_y(grid_read_y),
+        .comp_read_y(comp_read_y),
+
+        .grid_read_data(grid_read_data),
+        .comp_read_data(comp_read_data),
 
         .current_color(current_color),
         .current_column(current_column),
@@ -70,8 +79,13 @@ module full_system_root(
         .rnd_col_1(rnd_col_1),.rnd_col_2(rnd_col_2),
         .rnd_col_3(rnd_col_3),.rnd_col_4(rnd_col_4),
 
-        .read_data(read_data),
-        .read_x(read_x),.read_y(read_y),
+        .grid_read_data(grid_read_data),
+        .comp_read_data(comp_read_data),
+
+        .grid_read_x(grid_read_x),
+        .comp_read_x(comp_read_x),
+        .grid_read_y(grid_read_y),
+        .comp_read_y(comp_read_y),
 
         .h_sync(h_sync),.v_sync(v_sync),
 
