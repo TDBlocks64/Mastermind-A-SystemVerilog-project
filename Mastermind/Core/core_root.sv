@@ -13,7 +13,8 @@ module core_root(
     input logic [3:0] grid_read_x, comp_read_x,
     input logic [2:0] grid_read_y, comp_read_y,
 
-    output logic [3:0] grid_read_data, comp_read_data,
+    output logic [3:0] grid_read_data, 
+    output logic [1:0] comp_read_data,
     
     output logic [3:0] current_color,
     output logic [3:0] current_column,
@@ -24,7 +25,8 @@ module core_root(
     // Internal signal declaration
     logic [3:0] grid_write_x, comp_write_x;
     logic [1:0] grid_write_y, comp_write_y;
-    logic [3:0] grid_write_data, comp_write_data;
+    logic [3:0] grid_write_data; 
+    logic [1:0] comp_write_data;
     logic grid_write_enable, comp_write_enable;
 
     // Structurally connecting the modules

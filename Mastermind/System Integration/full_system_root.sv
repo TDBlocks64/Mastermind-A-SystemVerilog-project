@@ -26,7 +26,8 @@ module full_system_root(
 
     logic [3:0] grid_read_x, comp_read_x;
     logic [2:0] grid_read_y, comp_read_y;
-    logic [3:0] grid_read_data, comp_read_data;
+    logic [3:0] grid_read_data, 
+    logic [1:0] comp_read_data;
 
     logic [3:0] current_color;
     logic [3:0] current_column;

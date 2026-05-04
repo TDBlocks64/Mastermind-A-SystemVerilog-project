@@ -16,7 +16,8 @@ module output_root(
 
     input logic [3:0] rnd_col_1, rnd_col_2, rnd_col_3, rnd_col_4,
 
-    input logic [3:0] grid_read_data, comp_read_data,
+    input logic [3:0] grid_read_data, 
+    input logic [1:0] comp_read_data,
 
     output logic [3:0] grid_read_x, comp_read_x,
     output logic [2:0] grid_read_y, comp_read_y,
