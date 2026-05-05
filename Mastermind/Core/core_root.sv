@@ -23,6 +23,7 @@ module core_root(
     output logic [3:0] rnd_col_1, rnd_col_2, rnd_col_3, rnd_col_4);
 
     // Internal signal declaration
+    logic module_enable;
     logic [3:0] grid_write_x, comp_write_x;
     logic [1:0] grid_write_y, comp_write_y;
     logic [3:0] grid_write_data; 
@@ -55,6 +56,19 @@ module core_root(
         .write_enable(comp_write_enable),
         .read_x(comp_read_x),.read_y(comp_read_y),
         .read_data(comp_read_data));
+
+    comparator comp_mod(
+        .clk(clk),.module_enable(module_enable),
+        .current_column(current_column),
+        .rnd_col_1(rnd_col_1),.rnd_col_2(rnd_col_2),
+        .rnd_col_3(rnd_col_3),.rnd_col_4(rnd_col_4),
+        .grid_read_data(grid_read_data),
+        .grid_read_x(grid_read_x),
+        .grid_read_y(grid_read_y),
+        .comp_write_x(comp_write_x),
+        .comp_write_y(comp_write_y),
+        .comp_write_data(comp_write_data),
+        .comp_write_enable(comp_write_enable));
 
     random_solution random_sol_mod(
         .clk(clk),.rst(rst),
